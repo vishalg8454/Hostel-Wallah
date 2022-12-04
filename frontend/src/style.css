@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
+/* body{
+    
+} */
+:root {
+    --font-size: 1.3rem;
+    --color-primary: #6B46C1;
+    --color-white: #eeeeee;
+    --color-background: #e4e4e4;
+    --color-black: #000000de; 
+    --color-dark-gray: #808080;
+    --sans: Oxygen, sans-serif;
+    --font-logo: Prompt;
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    /* font-family: var(--sans); */
+    background-color: #FAF5FF !important;
+    font-family: 'Baloo 2', cursive !important;
+    font-size: 16px;
+}

@@ -15,7 +15,7 @@ const Header = ({ loggedIn }) => {
       <div className="nav-container">
         <Link className="nav-logo" to="/">
           {/* FLAT MATE */}
-          Hostel Wallah
+          Quikker
         </Link>
         <div className="right-flex">
         <ul className="nav-list">

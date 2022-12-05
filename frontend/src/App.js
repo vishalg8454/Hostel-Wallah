@@ -16,14 +16,14 @@ import "react-toastify/dist/ReactToastify.css";
 
 let URL = "";
 function App() {
-  if(process.env.NODE_ENV == "development"){
-    URL="http://localhost:3001/";
-  }else{
-    URL="https://hostel-mate-b9js.onrender.com/";
+  if (process.env.NODE_ENV == "development") {
+    URL = "http://localhost:3001/";
+  } else {
+    URL = "https://hostel-mate-b9js.onrender.com/";
   }
-  // console.log(process.env);
   const [loggedIn, setLoggedIn] = useState(false);
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -31,8 +31,10 @@ function App() {
     }
 
     (async () => {
+      setLoading(true);
       const res = await axios.get("http://localhost:3001/products");
       setItems(res.data.data);
+      setLoading(false);
     })();
   }, []);
 
@@ -42,11 +44,18 @@ function App() {
         <ToastContainer />
         <Header loggedIn={loggedIn} />
         <Routes>
-          <Route path="" element={<LandingPage items={items} URL={URL}/>} />
+          <Route
+            path=""
+            element={<LandingPage items={items} URL={URL} loading={loading} />}
+          />
           <Route
             path="login"
             element={
-              <LoginPage loggedIn={loggedIn} setLoggedIn={setLoggedIn} URL={URL}/>
+              <LoginPage
+                loggedIn={loggedIn}
+                setLoggedIn={setLoggedIn}
+                URL={URL}
+              />
             }
           />
           <Route
@@ -62,7 +71,7 @@ function App() {
           />
           <Route
             path="signup"
-            element={<SignupPage setLoggedIn={setLoggedIn} URL={URL}/>}
+            element={<SignupPage setLoggedIn={setLoggedIn} URL={URL} />}
           />
           <Route path="detail/:id" element={<DetailPage />} />
           <Route path="chat" element={<ChatPage />} />

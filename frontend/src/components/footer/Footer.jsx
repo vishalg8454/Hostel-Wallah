@@ -26,7 +26,7 @@ export const Footer = () => {
           </Link>
         </li>
       </ul>
-      <p className="text-lg">© 2022 RENT MOJO</p>
+      <p className="text-lg">© 2022 Quikker</p>
     </footer>
   );
 };

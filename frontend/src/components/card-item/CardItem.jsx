@@ -6,10 +6,13 @@ import {
   Stack,
   Text,
   Flex,
+  Button,
 } from "@chakra-ui/react";
-import { BiBed, BiBath, BiArea } from "react-icons/bi";
+import { BiChat, BiBed, BiBath, BiArea, BiTime } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 const CardItem = ({ house }) => {
+  const navigate = useNavigate();
   return (
     <Flex justify="center" align="center">
       <Stack width="300px" bg="white" boxShadow="xl" borderRadius="xl">
@@ -22,11 +25,13 @@ const CardItem = ({ house }) => {
             color="purple.500"
           >
             Rs.{house.price}
-            {house.category === "Flat" &&
-            <span style={{ fontSize: 12, color: "grey", fontWeight: "normal" }}>
-              /month
-            </span>
-}
+            {house.category === "Flat" && (
+              <span
+                style={{ fontSize: 12, color: "grey", fontWeight: "normal" }}
+              >
+                /month
+              </span>
+            )}
           </Text>
           <Heading fontSize="26px" letterSpacing="tight">
             {house.name}
@@ -35,20 +40,36 @@ const CardItem = ({ house }) => {
             {house.description}
           </Text>
           <Divider my="2.5" />
-          <HStack spacing="5">
-            <HStack>
-              <BiBed style={{ color: "purple" }} />
-              <Text fontSize="12px">{2} Beds</Text>
+          {house.category === "Flat" && (
+            <HStack spacing="5">
+              <HStack>
+                <BiBed style={{ color: "purple" }} />
+                <Text fontSize="12px">
+                  {(Math.floor(Math.random() * 10) % 3) + 1} Beds
+                </Text>
+              </HStack>
+              <HStack>
+                <BiBath style={{ color: "purple" }} />
+                <Text fontSize="12px">{1} Bathrooms</Text>
+              </HStack>
+              <Button onClick={() => navigate("/chat")}>
+                <BiChat />
+              </Button>
             </HStack>
-            <HStack>
-              <BiBath style={{ color: "purple" }} />
-              <Text fontSize="12px">{1} Bathrooms</Text>
+          )}
+          {house.category === "Items" && (
+            <HStack spacing="5">
+              <HStack>
+                <BiTime style={{ color: "purple" }} />
+                <Text fontSize="12px">
+                  {Math.floor(Math.random() * 10)} months old
+                </Text>
+              </HStack>
+              <Button onClick={() => navigate("/chat")}>
+                <BiChat />
+              </Button>
             </HStack>
-            <HStack>
-              <BiArea style={{ color: "purple" }} />
-              <Text fontSize="12px">{1}</Text>
-            </HStack>
-          </HStack>
+          )}
         </Flex>
       </Stack>
     </Flex>

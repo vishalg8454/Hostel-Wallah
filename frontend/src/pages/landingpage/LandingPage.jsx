@@ -2,10 +2,18 @@ import "./landing-page.css";
 import { FilterList, HouseList } from "../../components";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Hide, Container, Heading, HStack, Show, Text } from "@chakra-ui/react";
+import {
+  Hide,
+  Container,
+  Heading,
+  HStack,
+  Show,
+  Text
+} from "@chakra-ui/react";
 import { FaFilter } from "react-icons/fa";
+import { Spinner, Flex, Center } from "@chakra-ui/react";
 
-const LandingPage = ({ items,URL }) => {
+const LandingPage = ({ items, URL, loading }) => {
   const [state, setState] = useState({
     category: "Flat",
     price: "",
@@ -54,6 +62,17 @@ const LandingPage = ({ items,URL }) => {
         <FilterList state={state} setState={setState} />
       </Hide>
       {/* {<FilterList state={state} setState={setState}/>} */}
+      {loading && (
+        <div className="div-cen">
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="#9F7AEA"
+            size="xl"
+          />
+        </div>
+      )}
       <HouseList houses={filteredItems} />
     </Container>
   );
